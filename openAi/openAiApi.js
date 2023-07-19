@@ -13,7 +13,6 @@ const getChatCompletionData = async (messages, model) => {
             {
                 headers: authHeaders()
             });
-
         // console.log("----",completion.choices);
 
         return { choices: completion.choices, error: false }

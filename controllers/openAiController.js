@@ -25,7 +25,6 @@ const getPlaces = async (req, res) => {
         async function ChatCompletion() {
             const { choices, error } = await getChatCompletionData(exampleMessage, gpt_turbo_model)
 
-
             if (error && error.response && error.response.status && error.response.status === 503) ChatCompletion()
 
             else if (error) {
