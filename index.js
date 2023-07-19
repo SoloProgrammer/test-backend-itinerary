@@ -7,12 +7,15 @@ const openAiRoutes = require('./routes/openAiRoutes')
 const PORT = process.env.PORT || 8080
 
 app.use(express.json())
-app.use(cors())
+
+// CORS configuration.........
+const Allowed_Origins = process.env.ALLOWED_ORIGINS.split(', ');
+app.use(cors({ origin: Allowed_Origins }));
 
 app.use('/api/ai/', openAiRoutes)
 
 app.get('/', (req, res) => {
-    res.send(`Server is running on PORT ${PORT}..... <a href="http://localhost:3000">Click here</a> to visit FrontEnd`)
+    res.send(`Server is running on PORT ${PORT}..... <a href="https://main--remarkable-creponne-d03799.netlify.app">Click here</a> to visit FrontEnd`)
 })
 
 app.listen(PORT, (err) => {

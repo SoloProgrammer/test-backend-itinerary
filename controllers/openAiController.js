@@ -74,6 +74,8 @@ const getItinerary = async (req, res) => {
         }
     ]
 
+    console.log("exampleMessage--",exampleMessage)
+
     try {
 
         async function ChatCompletion() {
@@ -85,6 +87,7 @@ const getItinerary = async (req, res) => {
             // console.log("------------------", error.response.status, error);
 
             else if (error) {
+                console.log("Error after api gets called ----",error);
                 return errorRespose(res, false, error)
             }
 
@@ -94,7 +97,7 @@ const getItinerary = async (req, res) => {
 
                     const parsedData = JSON.parse(choices[0].message?.content)
 
-                    // console.log(parsedData);
+                    console.log("parsedData-----",parsedData);
                     let data;
 
                     if (!Array.isArray(parsedData)) {
@@ -103,7 +106,7 @@ const getItinerary = async (req, res) => {
                     }
                     else data = parsedData
 
-                    // console.log(data);
+                    console.log("Final console-----",data);
 
                     res.status(200).json({ status: true, data, message: `Your itinerary is ready` })
                 } catch (error) {
